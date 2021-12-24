@@ -1,0 +1,28 @@
+.list {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 200px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.entry {
+  display: flex;
+  flex-direction: column;
+}
+
+.number {
+  color: #888;
+}
+
+.loader {
+}

@@ -1,0 +1,12 @@
+.app {
+  background-color: #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  min-height: 100vh;
+}
+
+.title {
+  margin: 0;
+}
