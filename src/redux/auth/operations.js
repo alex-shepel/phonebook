@@ -62,4 +62,19 @@ const login = createAsyncThunk(
   },
 );
 
-export { register, login };
+const logout = createAsyncThunk(
+  'auth/logout',
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await api.logout();
+      console.log('data -->', data);
+      api.setToken(null);
+      return data;
+    } catch (error) {
+      console.log('error.response ->', error.response);
+      return rejectWithValue(Error.UNKNOWN);
+    }
+  },
+);
+
+export { register, login, logout };

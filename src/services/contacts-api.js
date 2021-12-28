@@ -8,6 +8,8 @@ const signup = async credentials =>
 const login = async credentials =>
   (await axios.post('/users/login', credentials)).data;
 
+const logout = async () => (await axios.post('/users/logout')).data;
+
 const setToken = token =>
   (axios.defaults.headers.common.Authorization = `Bearer ${token}`);
 
@@ -29,4 +31,4 @@ const setToken = token =>
 //   });
 //
 // export { getContacts, addContact, delContact };
-export { signup, login, setToken };
+export { signup, login, setToken, logout };
