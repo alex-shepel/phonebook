@@ -16,6 +16,7 @@ const register = createAsyncThunk(
     try {
       const data = await api.signup(credentials);
       console.log('data -->', data);
+      api.setToken(data.token);
       return data;
     } catch (error) {
       console.log('error.response -->', error.response);
@@ -46,6 +47,7 @@ const login = createAsyncThunk(
     try {
       const data = await api.login(credentials);
       console.log('data -->', data);
+      api.setToken(data.token);
       return data;
     } catch (error) {
       const data = error.response.data;

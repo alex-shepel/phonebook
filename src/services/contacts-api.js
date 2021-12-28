@@ -8,6 +8,9 @@ const signup = async credentials =>
 const login = async credentials =>
   (await axios.post('/users/login', credentials)).data;
 
+const setToken = token =>
+  (axios.defaults.headers.common.Authorization = `Bearer ${token}`);
+
 // const getContacts = async () =>
 //   await axios({
 //     method: 'get',
@@ -26,4 +29,4 @@ const login = async credentials =>
 //   });
 //
 // export { getContacts, addContact, delContact };
-export { signup, login };
+export { signup, login, setToken };
