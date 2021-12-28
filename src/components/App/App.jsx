@@ -10,6 +10,7 @@ import Toast from 'components/Toast';
 const App = () => {
   return (
     <div className={s.app}>
+      <h1>Phonebook</h1>
       <Switch>
         <Route path={'/contacts'}>
           <ContactsPage />
