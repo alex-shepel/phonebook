@@ -11,7 +11,11 @@ const Form = ({ inputs, buttonLabel, onSubmit, isSubmitting }) => {
   const handleSubmit = e => {
     e.preventDefault();
     onSubmit(formState);
-    clearFormState();
+    clearFormState(
+      inputs
+        .filter(input => input.type === 'password')
+        .map(input => input.name),
+    );
   };
 
   const createInput = config => (

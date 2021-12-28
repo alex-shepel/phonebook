@@ -5,7 +5,6 @@ import LoginPage from 'pages/LoginPage';
 import ContactsPage from 'pages/ContactsPage';
 
 import RegisterPage from 'pages/RegisterPage';
-import Toast from 'components/Toast';
 
 const App = () => {
   return (
@@ -23,7 +22,6 @@ const App = () => {
         </Route>
         <Redirect to={'/login'} />
       </Switch>
-      <Toast />
     </div>
   );
 };

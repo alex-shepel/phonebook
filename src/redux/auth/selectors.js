@@ -1,7 +1,13 @@
 const getIsLoggedIn = state => state.auth.isLoggedIn;
 const getUsername = state => state.auth.user.name;
 const getIsAuthing = state => state.auth.isAuthing;
-const getError = state =>
-  state.auth.error; /* TODO: (auth.error || contacts.error) */
+const getRegisterError = state => state.auth.registerError;
+const getLoginError = state => state.auth.loginError;
 
-export { getIsLoggedIn, getUsername, getIsAuthing, getError };
+export {
+  getIsLoggedIn,
+  getUsername,
+  getIsAuthing,
+  getLoginError,
+  getRegisterError,
+};
