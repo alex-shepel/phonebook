@@ -1,26 +1,29 @@
 import axios from 'axios';
 
-axios.defaults.baseURL =
-  'https://61c2f7c99cfb8f0017a3e80d.mockapi.io/contacts/';
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
 
-const getContacts = async () => {
-  return await axios({
-    method: 'get',
-  });
-};
+const signup = async credentials =>
+  (await axios.post('/users/signup', credentials)).data;
 
-const addContact = async contact => {
-  return await axios({
-    method: 'post',
-    data: contact,
-  });
-};
+const login = async credentials =>
+  (await axios.post('/users/login', credentials)).data;
 
-const delContact = async id => {
-  return await axios({
-    method: 'delete',
-    url: id,
-  });
-};
-
-export { getContacts, addContact, delContact };
+// const getContacts = async () =>
+//   await axios({
+//     method: 'get',
+//   });
+//
+// const addContact = async contact =>
+//   await axios({
+//     method: 'post',
+//     data: contact,
+//   });
+//
+// const delContact = async id =>
+//   await axios({
+//     method: 'delete',
+//     url: id,
+//   });
+//
+// export { getContacts, addContact, delContact };
+export { signup, login };

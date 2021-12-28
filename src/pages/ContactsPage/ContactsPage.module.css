@@ -1,9 +1,12 @@
-.app {
+.contacts {
+  background-color: transparent;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
   min-height: 100vh;
-  background-color: #ccc;
+}
+
+.title {
+  margin: 0;
 }

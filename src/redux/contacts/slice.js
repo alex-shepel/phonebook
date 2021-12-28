@@ -61,4 +61,5 @@ const slice = createSlice({
   },
 });
 
-export default slice;
+export const { reducer: contactsReducer } = slice;
+export const { setFilter } = slice.actions;

@@ -1,5 +1,5 @@
 @import '../node_modules/react-toastify/dist/ReactToastify.css';
-@import-normalize;
+@import '../node_modules/modern-normalize/modern-normalize.css';
 
 body {
   margin: 0;
@@ -13,6 +13,15 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
 }
 
 :root {

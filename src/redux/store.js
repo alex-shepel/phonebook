@@ -1,4 +1,5 @@
-import contactsReducer from './contacts/reducer';
+import { authReducer } from './auth';
+import { contactsReducer } from './contacts';
 import {
   combineReducers,
   configureStore,
@@ -15,6 +16,7 @@ import {
 
 const rootReducer = combineReducers({
   contacts: contactsReducer,
+  auth: authReducer,
 });
 
 const middlewaresCheckIgnore = getDefaultMiddleware({
