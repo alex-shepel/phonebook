@@ -61,10 +61,10 @@ const slice = createSlice({
       state.isAuthing = true;
     },
     [logout.fulfilled]: state => {
-      state.isAuthing = false;
-      state.token = null;
       state.user = { name: null, email: null };
+      state.token = null;
       state.isLoggedIn = false;
+      state.isAuthing = false;
       state.logoutError = null;
     },
     [logout.rejected]: (state, { payload }) => {

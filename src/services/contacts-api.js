@@ -13,22 +13,24 @@ const logout = async () => (await axios.post('/users/logout')).data;
 const setToken = token =>
   (axios.defaults.headers.common.Authorization = `Bearer ${token}`);
 
-// const getContacts = async () =>
-//   await axios({
-//     method: 'get',
-//   });
-//
-// const addContact = async contact =>
-//   await axios({
-//     method: 'post',
-//     data: contact,
-//   });
-//
-// const delContact = async id =>
-//   await axios({
-//     method: 'delete',
-//     url: id,
-//   });
-//
-// export { getContacts, addContact, delContact };
-export { signup, login, setToken, logout };
+const getContacts = async () => (await axios.get('/contacts')).data;
+
+const addContact = async credentials =>
+  (await axios.post('/contacts', credentials)).data;
+
+const updateContact = async (id, credentials) =>
+  (await axios.patch(`/contacts/${id}`, credentials)).data;
+
+const deleteContact = async id =>
+  (await axios.delete(`/contacts/${id}`)).data.id;
+
+export {
+  signup,
+  login,
+  setToken,
+  logout,
+  getContacts,
+  addContact,
+  updateContact,
+  deleteContact,
+};

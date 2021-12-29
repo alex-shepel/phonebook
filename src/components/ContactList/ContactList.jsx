@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import {
   fetchItems,
-  removeItem,
+  deleteItem,
   getIsLoading,
   getFilteredItems,
   getDeletingIds,
@@ -21,7 +21,7 @@ const ContactList = () => {
   }, [dispatch]);
 
   const createDeleteButton = id => (
-    <button type="button" onClick={() => dispatch(removeItem(id))}>
+    <button type="button" onClick={() => dispatch(deleteItem(id))}>
       Delete
     </button>
   );

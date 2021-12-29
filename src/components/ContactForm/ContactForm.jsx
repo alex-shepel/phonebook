@@ -3,7 +3,6 @@ import s from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getItems, addItem, getIsAdding } from 'redux/contacts';
 import Spinner from 'components/Spinner';
-import { toast, ToastContainer } from 'react-toastify';
 
 const Fields = {
   NAME: 'name',
@@ -51,7 +50,7 @@ const ContactForm = () => {
     );
 
     if (duplicate) {
-      toast.error(`${duplicate.name} ${duplicate.number} already exists!`);
+      // toast.error(`${duplicate.name} ${duplicate.number} already exists!`);
       return;
     }
 
@@ -68,17 +67,17 @@ const ContactForm = () => {
 
   return (
     <>
-      <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+      {/*<ToastContainer*/}
+      {/*  position="top-center"*/}
+      {/*  autoClose={3000}*/}
+      {/*  hideProgressBar={false}*/}
+      {/*  newestOnTop={false}*/}
+      {/*  closeOnClick*/}
+      {/*  rtl={false}*/}
+      {/*  pauseOnFocusLoss*/}
+      {/*  draggable*/}
+      {/*  pauseOnHover*/}
+      {/*/>*/}
       <form className={s.form} onSubmit={handleAddContact}>
         <label className={s.field}>
           Name

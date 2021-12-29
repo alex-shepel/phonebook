@@ -1,8 +1,7 @@
 .filter {
-  padding: 20px;
   display: flex;
   flex-direction: column;
-  width: 200px;
+  gap: 5px;
   background-color: #fff;
   border-radius: 10px;
 }

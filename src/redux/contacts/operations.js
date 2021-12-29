@@ -4,37 +4,45 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 const fetchItems = createAsyncThunk(
   'contacts/fetchItems',
   async (_, { rejectWithValue }) => {
-    // try {
-    //   const { data } = await api.getContacts();
-    //   return data;
-    // } catch (error) {
-    //   return rejectWithValue(error);
-    // }
+    try {
+      return await api.getContacts();
+    } catch (error) {
+      return rejectWithValue(error);
+    }
   },
 );
 
 const addItem = createAsyncThunk(
   'contacts/addItem',
   async ({ name, number }, { rejectWithValue }) => {
-    // try {
-    //   const { data } = await api.addContact({ name, number });
-    //   return data;
-    // } catch (error) {
-    //   return rejectWithValue(error);
-    // }
+    try {
+      return await api.addContact({ name, number });
+    } catch (error) {
+      return rejectWithValue(error);
+    }
   },
 );
 
-const removeItem = createAsyncThunk(
-  'contacts/removeItem',
+const deleteItem = createAsyncThunk(
+  'contacts/deleteItem',
   async (id, { rejectWithValue }) => {
-    // try {
-    //   const { data } = await api.delContact(id);
-    //   return data.id;
-    // } catch (error) {
-    //   return rejectWithValue(error);
-    // }
+    try {
+      return await api.deleteContact(id);
+    } catch (error) {
+      return rejectWithValue(error);
+    }
   },
 );
 
-export { fetchItems, addItem, removeItem };
+const updateItem = createAsyncThunk(
+  'contacts/updateItem',
+  async ({ id, name, number }, { rejectWithValue }) => {
+    try {
+      return await api.updateContact(id, { name, number });
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export { fetchItems, addItem, deleteItem, updateItem };

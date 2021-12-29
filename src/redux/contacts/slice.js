@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchItems, addItem, removeItem } from './operations';
+import { fetchItems, addItem, deleteItem, updateItem } from './operations';
 
 const initialState = {
   items: [],
   isLoading: false,
   isAdding: false,
+  isUpdating: false,
   deletingIds: [],
   filter: '',
 };
@@ -46,17 +47,32 @@ const slice = createSlice({
       state.isAdding = false;
     },
 
-    [removeItem.pending]: (state, { meta }) => {
+    [deleteItem.pending]: (state, { meta }) => {
       console.log('DELETE request sent');
       state.deletingIds.push(meta.arg);
     },
-    [removeItem.fulfilled]: (state, { payload }) => {
+    [deleteItem.fulfilled]: (state, { payload }) => {
       state.items = state.items.filter(item => item.id !== payload);
       state.deletingIds.filter(id => id !== payload);
     },
-    [removeItem.rejected]: (state, { payload }) => {
+    [deleteItem.rejected]: (state, { payload }) => {
       console.log(payload);
       state.deletingIds.filter(id => id !== payload);
+    },
+
+    [updateItem.pending]: state => {
+      console.log('PATCH request sent');
+      state.isUpdating = true;
+    },
+    [updateItem.fulfilled]: (state, { payload }) => {
+      const outdatedItem = state.items.find(item => item.id === payload.id);
+      outdatedItem.name = payload.name;
+      outdatedItem.number = payload.number;
+      state.isUpdating = false;
+    },
+    [updateItem.rejected]: (state, { payload }) => {
+      console.log(payload);
+      state.isUpdating = false;
     },
   },
 });

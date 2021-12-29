@@ -52,7 +52,7 @@ Form.propTypes = {
   inputs: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
-      type: PropTypes.oneOf(['text', 'email', 'password']).isRequired,
+      type: PropTypes.oneOf(['text', 'email', 'password', 'number']).isRequired,
       name: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,

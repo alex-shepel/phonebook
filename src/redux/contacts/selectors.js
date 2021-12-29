@@ -3,6 +3,7 @@ import { createSelector } from '@reduxjs/toolkit';
 const getItems = state => state.contacts.items;
 const getIsLoading = state => state.contacts.isLoading;
 const getIsAdding = state => state.contacts.isAdding;
+const getIsUpdating = state => state.contacts.isUpdating;
 const getDeletingIds = state => state.contacts.deletingIds;
 const getFilter = state => state.contacts.filter;
 const getFilteredItems = createSelector(getItems, getFilter, (items, filter) =>
@@ -13,6 +14,7 @@ export {
   getItems,
   getIsLoading,
   getIsAdding,
+  getIsUpdating,
   getDeletingIds,
   getFilter,
   getFilteredItems,

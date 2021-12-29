@@ -1,9 +1,7 @@
 .list {
-  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 200px;
   background-color: #fff;
   border-radius: 10px;
 }
