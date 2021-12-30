@@ -39,7 +39,7 @@ const Form = ({
 
   const createButton = () => (
     <div className={s.buttonContainer}>
-      <button type="submit" className={s.button}>
+      <button disabled={isSubmitting} type="submit" className={s.button}>
         {buttonLabel}
       </button>
       {isSubmitting && <Spinner />}

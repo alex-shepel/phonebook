@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { logout, getIsLoggedIn, getUsername } from 'redux/auth';
+import { logout, getIsLoggedIn, getUsername, getIsAuthing } from 'redux/auth';
 import s from './Header.module.css';
+import Spinner from '../Spinner';
 
 const Header = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
+  const isAuthing = useSelector(getIsAuthing);
   const name = useSelector(getUsername);
   const dispatch = useDispatch();
 
@@ -13,13 +15,17 @@ const Header = () => {
       {isLoggedIn && (
         <div className={s.user}>
           <span>{name}</span>
-          <button
-            className={s.logout}
-            type={'button'}
-            onClick={() => dispatch(logout())}
-          >
-            Logout
-          </button>
+          <div className={s.logoutContainer}>
+            {isAuthing && <Spinner />}
+            <button
+              disabled={isAuthing}
+              className={s.logoutButton}
+              type={'button'}
+              onClick={() => dispatch(logout())}
+            >
+              Logout
+            </button>
+          </div>
         </div>
       )}
     </div>

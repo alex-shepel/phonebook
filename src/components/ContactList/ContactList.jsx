@@ -21,13 +21,19 @@ const ContactList = () => {
   }, [dispatch]);
 
   const createDeleteButton = id => (
-    <button
-      className={s.button}
-      type="button"
-      onClick={() => dispatch(deleteItem(id))}
-    >
-      Delete
-    </button>
+    <>
+      {deletingIds.some(delId => delId === id) ? (
+        <Spinner />
+      ) : (
+        <button
+          className={s.button}
+          type="button"
+          onClick={() => dispatch(deleteItem(id))}
+        >
+          Delete
+        </button>
+      )}
+    </>
   );
 
   const createList = () =>
@@ -41,11 +47,7 @@ const ContactList = () => {
               <span>{name}</span>
               <span className={s.number}>{number}</span>
             </p>
-            {deletingIds.some(delId => delId === id) ? (
-              <Spinner />
-            ) : (
-              createDeleteButton(id)
-            )}
+            {createDeleteButton(id)}
           </li>
         ))}
       </ul>
