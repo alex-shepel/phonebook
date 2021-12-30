@@ -38,7 +38,7 @@ const App = () => {
   }, [history, isLoggedIn, location.pathname]);
 
   return (
-    <>
+    <div className={s.app}>
       <header className={s.header}>
         <Wrapper content={<Header />} type={'transparent'} />
       </header>
@@ -56,7 +56,7 @@ const App = () => {
           <Redirect to={'/login'} />
         </Switch>
       </main>
-    </>
+    </div>
   );
 };
 
