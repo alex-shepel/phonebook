@@ -21,28 +21,35 @@ const ContactList = () => {
   }, [dispatch]);
 
   const createDeleteButton = id => (
-    <button type="button" onClick={() => dispatch(deleteItem(id))}>
+    <button
+      className={s.button}
+      type="button"
+      onClick={() => dispatch(deleteItem(id))}
+    >
       Delete
     </button>
   );
 
-  const createList = () => (
-    <ul className={s.list}>
-      {items.map(({ id, name, number }) => (
-        <li className={s.item} key={id}>
-          <p className={s.entry}>
-            <span>{name}</span>
-            <span className={s.number}>{number}</span>
-          </p>
-          {deletingIds.some(delId => delId === id) ? (
-            <Spinner />
-          ) : (
-            createDeleteButton(id)
-          )}
-        </li>
-      ))}
-    </ul>
-  );
+  const createList = () =>
+    items.length === 0 ? (
+      <p>There are no contacts yet...</p>
+    ) : (
+      <ul className={s.list}>
+        {items.map(({ id, name, number }) => (
+          <li className={s.item} key={id}>
+            <p className={s.entry}>
+              <span>{name}</span>
+              <span className={s.number}>{number}</span>
+            </p>
+            {deletingIds.some(delId => delId === id) ? (
+              <Spinner />
+            ) : (
+              createDeleteButton(id)
+            )}
+          </li>
+        ))}
+      </ul>
+    );
 
   return <>{isLoading ? <Spinner color={'#444'} /> : createList()}</>;
 };

@@ -1,19 +1,26 @@
-import { Link } from 'react-router-dom';
-import { logout } from 'redux/auth';
 import { useDispatch, useSelector } from 'react-redux';
-import { getIsLoggedIn } from '../../redux/auth/selectors';
+import { logout, getIsLoggedIn, getUsername } from 'redux/auth';
+import s from './Header.module.css';
 
 const Header = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
+  const name = useSelector(getUsername);
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className={s.header}>
       <h1>Phonebook</h1>
       {isLoggedIn && (
-        <Link to={'/login'} onClick={() => dispatch(logout)}>
-          Logout
-        </Link>
+        <div className={s.user}>
+          <span>{name}</span>
+          <button
+            className={s.logout}
+            type={'button'}
+            onClick={() => dispatch(logout())}
+          >
+            Logout
+          </button>
+        </div>
       )}
     </div>
   );

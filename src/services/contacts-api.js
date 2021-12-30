@@ -10,6 +10,8 @@ const login = async credentials =>
 
 const logout = async () => (await axios.post('/users/logout')).data;
 
+const getUser = async () => (await axios.post('/users/current')).data;
+
 const setToken = token =>
   (axios.defaults.headers.common.Authorization = `Bearer ${token}`);
 
@@ -27,8 +29,9 @@ const deleteContact = async id =>
 export {
   signup,
   login,
-  setToken,
   logout,
+  getUser,
+  setToken,
   getContacts,
   addContact,
   updateContact,

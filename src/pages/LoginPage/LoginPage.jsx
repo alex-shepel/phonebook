@@ -28,6 +28,7 @@ const LoginPage = () => {
                 name: 'password',
               },
             ]}
+            clearInputs={'password'}
             buttonLabel={'Login'}
             onSubmit={formData => dispatch(login(formData))}
             isSubmitting={isAuthing}

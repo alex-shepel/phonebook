@@ -1,9 +1,10 @@
-.app {
+.header {
+  background-color: #ccc;
+}
+
+.main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 20px;
-  min-height: 100vh;
   background-color: #ccc;
 }

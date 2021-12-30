@@ -16,7 +16,6 @@ const register = createAsyncThunk(
     try {
       const data = await api.signup(credentials);
       console.log('data -->', data);
-      api.setToken(data.token);
       return data;
     } catch (error) {
       console.log('error.response -->', error.response);
@@ -47,7 +46,6 @@ const login = createAsyncThunk(
     try {
       const data = await api.login(credentials);
       console.log('data -->', data);
-      api.setToken(data.token);
       return data;
     } catch (error) {
       const data = error.response.data;
@@ -68,7 +66,6 @@ const logout = createAsyncThunk(
     try {
       const data = await api.logout();
       console.log('data -->', data);
-      api.setToken(null);
       return data;
     } catch (error) {
       console.log('error.response ->', error.response);
@@ -77,4 +74,18 @@ const logout = createAsyncThunk(
   },
 );
 
-export { register, login, logout };
+const fetchUser = createAsyncThunk(
+  'auth/fetchUser',
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await api.getUser();
+      console.log('data -->', data);
+      return data;
+    } catch (error) {
+      console.log('error.response ->', error.response);
+      return rejectWithValue(Error.UNKNOWN);
+    }
+  },
+);
+
+export { register, login, logout, fetchUser };

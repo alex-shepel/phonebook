@@ -4,6 +4,7 @@ import s from './Wrapper.module.css';
 const Type = {
   NORMAL: 'normal',
   ERROR: 'error',
+  TRANSPARENT: 'transparent',
 };
 
 const Wrapper = ({ content, type = Type.NORMAL }) => {
@@ -15,6 +16,9 @@ const Wrapper = ({ content, type = Type.NORMAL }) => {
       break;
     case Type.ERROR:
       backgroundColor = '#ffebe9';
+      break;
+    case Type.TRANSPARENT:
+      backgroundColor = 'transparent';
       break;
     default:
       backgroundColor = '#fff';

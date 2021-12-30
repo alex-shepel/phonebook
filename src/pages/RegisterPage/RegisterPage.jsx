@@ -35,6 +35,7 @@ const RegisterPage = () => {
                 name: 'password',
               },
             ]}
+            clearInputs={'password'}
             buttonLabel={'Register'}
             onSubmit={formData => dispatch(register(formData))}
             isSubmitting={isAuthing}

@@ -1,7 +1,7 @@
 .list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
   background-color: #fff;
   border-radius: 10px;
 }
@@ -22,5 +22,6 @@
   color: #888;
 }
 
-.loader {
+.button {
+  padding: 0 5px;
 }

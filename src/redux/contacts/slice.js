@@ -26,7 +26,7 @@ const slice = createSlice({
       state.isLoading = true;
     },
     [fetchItems.fulfilled]: (state, { payload }) => {
-      state.items = payload;
+      state.items = payload.sort((a, b) => a.name.localeCompare(b.name));
       state.isLoading = false;
     },
     [fetchItems.rejected]: (state, { payload }) => {
@@ -40,6 +40,7 @@ const slice = createSlice({
     },
     [addItem.fulfilled]: (state, { payload }) => {
       state.items.push(payload);
+      state.items.sort((a, b) => a.name.localeCompare(b.name));
       state.isAdding = false;
     },
     [addItem.rejected]: (state, { payload }) => {
@@ -68,6 +69,7 @@ const slice = createSlice({
       const outdatedItem = state.items.find(item => item.id === payload.id);
       outdatedItem.name = payload.name;
       outdatedItem.number = payload.number;
+      state.items.sort((a, b) => a.name.localeCompare(b.name));
       state.isUpdating = false;
     },
     [updateItem.rejected]: (state, { payload }) => {

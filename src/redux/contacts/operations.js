@@ -7,6 +7,7 @@ const fetchItems = createAsyncThunk(
     try {
       return await api.getContacts();
     } catch (error) {
+      console.log('error.response ->', error.response);
       return rejectWithValue(error);
     }
   },
@@ -18,6 +19,7 @@ const addItem = createAsyncThunk(
     try {
       return await api.addContact({ name, number });
     } catch (error) {
+      console.log('error.response ->', error.response);
       return rejectWithValue(error);
     }
   },
@@ -29,6 +31,7 @@ const deleteItem = createAsyncThunk(
     try {
       return await api.deleteContact(id);
     } catch (error) {
+      console.log('error.response ->', error.response);
       return rejectWithValue(error);
     }
   },
@@ -40,6 +43,7 @@ const updateItem = createAsyncThunk(
     try {
       return await api.updateContact(id, { name, number });
     } catch (error) {
+      console.log('error.response ->', error.response);
       return rejectWithValue(error);
     }
   },

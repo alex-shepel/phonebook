@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
+
+.user {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logout {
+  padding: 0 5px;
+}

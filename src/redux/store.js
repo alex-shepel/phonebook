@@ -12,11 +12,20 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
+  persistReducer,
+  persistStore,
 } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+const persistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token', 'isLoggedIn', 'user'],
+};
 
 const rootReducer = combineReducers({
   contacts: contactsReducer,
-  auth: authReducer,
+  auth: persistReducer(persistConfig, authReducer),
 });
 
 const middlewaresCheckIgnore = getDefaultMiddleware({
@@ -31,4 +40,6 @@ const store = configureStore({
   middleware: middlewaresCheckIgnore,
 });
 
-export default store;
+const persistor = persistStore(store);
+
+export { store, persistor };

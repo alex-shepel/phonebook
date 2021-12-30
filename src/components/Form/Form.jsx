@@ -3,7 +3,13 @@ import s from './Form.module.css';
 import Spinner from 'components/Spinner';
 import useFormState from 'hooks/useFormState';
 
-const Form = ({ inputs, buttonLabel, onSubmit, isSubmitting }) => {
+const Form = ({
+  inputs,
+  clearInputs = [],
+  buttonLabel,
+  onSubmit,
+  isSubmitting,
+}) => {
   const [formState, setFormState, clearFormState] = useFormState(
     inputs.map(input => input.name),
   );
@@ -13,7 +19,7 @@ const Form = ({ inputs, buttonLabel, onSubmit, isSubmitting }) => {
     onSubmit(formState);
     clearFormState(
       inputs
-        .filter(input => input.type === 'password')
+        .filter(input => clearInputs.includes(input.name))
         .map(input => input.name),
     );
   };
@@ -52,10 +58,11 @@ Form.propTypes = {
   inputs: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
-      type: PropTypes.oneOf(['text', 'email', 'password', 'number']).isRequired,
+      type: PropTypes.oneOf(['text', 'email', 'password', 'phone']).isRequired,
       name: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
+  clearInputs: PropTypes.arrayOf(PropTypes.string),
   buttonLabel: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
   isSubmitting: PropTypes.bool.isRequired,
