@@ -53,7 +53,7 @@ const ContactList = () => {
       </ul>
     );
 
-  return <>{isLoading ? <Spinner color={'#444'} /> : createList()}</>;
+  return <>{isLoading ? <Spinner size={32} color={'#444'} /> : createList()}</>;
 };
 
 export default ContactList;
