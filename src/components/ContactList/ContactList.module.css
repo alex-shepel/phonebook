@@ -25,3 +25,26 @@
 .button {
   padding: 0 5px;
 }
+
+.icon {
+  cursor: pointer;
+  transition: transform 250ms var(--anim-func);
+}
+
+.icon:hover {
+  transform: scale3d(1.1, 1.1, 1.1);
+}
+
+.animated {
+  color: #888888;
+  animation: spin 1000ms var(--anim-func);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

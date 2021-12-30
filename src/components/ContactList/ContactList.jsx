@@ -1,4 +1,5 @@
 import s from './ContactList.module.css';
+import { IoIosCloseCircleOutline } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import {
@@ -20,21 +21,20 @@ const ContactList = () => {
     dispatch(fetchItems());
   }, [dispatch]);
 
-  const createDeleteButton = id => (
-    <>
-      {deletingIds.some(delId => delId === id) ? (
-        <Spinner />
-      ) : (
-        <button
-          className={s.button}
-          type="button"
+  const createDeleteButton = id => {
+    const isDeleting = deletingIds.some(delId => delId === id);
+    const iconStyles = isDeleting ? [s.icon, s.animated].join(' ') : s.icon;
+
+    return (
+      <>
+        <IoIosCloseCircleOutline
+          className={iconStyles}
+          size={28}
           onClick={() => dispatch(deleteItem(id))}
-        >
-          Delete
-        </button>
-      )}
-    </>
-  );
+        />
+      </>
+    );
+  };
 
   const createList = () =>
     items.length === 0 ? (
