@@ -52,9 +52,9 @@ const slice = createSlice({
       console.log('DELETE request sent');
       state.deletingIds.push(meta.arg);
     },
-    [deleteItem.fulfilled]: (state, { payload }) => {
-      state.items = state.items.filter(item => item.id !== payload);
-      state.deletingIds.filter(id => id !== payload);
+    [deleteItem.fulfilled]: (state, { meta }) => {
+      state.items = state.items.filter(item => item.id !== meta.arg);
+      state.deletingIds.filter(id => id !== meta.arg);
     },
     [deleteItem.rejected]: (state, { payload }) => {
       console.log(payload);
