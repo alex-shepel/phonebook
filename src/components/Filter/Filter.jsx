@@ -1,4 +1,5 @@
 import s from './Filter.module.css';
+import { GoSearch } from 'react-icons/go';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilter, setFilter } from 'redux/contacts';
 
@@ -8,8 +9,11 @@ const Filter = () => {
 
   return (
     <div className={s.filter}>
-      <p>Find contacts by name</p>
+      <span className={s.icon}>
+        <GoSearch />
+      </span>
       <input
+        className={s.input}
         type="text"
         name="filter"
         onChange={e => dispatch(setFilter(e.target.value))}
