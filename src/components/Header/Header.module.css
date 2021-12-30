@@ -5,9 +5,17 @@
   text-align: center;
 }
 
-.user {
+.panel {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 }
 
 .logoutContainer {
@@ -16,5 +24,14 @@
 }
 
 .logoutButton {
-  padding: 0 5px;
+  padding: 5px;
+  background-color: var(--accent);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 250ms var(--anim-func);
+}
+
+.logoutButton:hover {
+  transform: scale3d(1.05, 1.05, 1.05);
 }
