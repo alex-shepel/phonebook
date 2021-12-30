@@ -18,20 +18,15 @@
   gap: 5px;
 }
 
-.logoutContainer {
-  display: flex;
-  gap: 20px;
-}
-
-.logoutButton {
-  padding: 5px;
-  background-color: var(--accent);
-  border: none;
-  border-radius: 5px;
+.logout {
   cursor: pointer;
   transition: transform 250ms var(--anim-func);
 }
 
-.logoutButton:hover {
-  transform: scale3d(1.05, 1.05, 1.05);
+.disabled {
+  color: #888888;
+}
+
+.logout:hover {
+  transform: scale3d(1.1, 1.1, 1.1);
 }

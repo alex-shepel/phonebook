@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout, getIsLoggedIn, getUsername, getIsAuthing } from 'redux/auth';
 import s from './Header.module.css';
 import { AiOutlineUser } from 'react-icons/ai';
-import Spinner from '../Spinner';
+import { IoLogOutOutline } from 'react-icons/io5';
 
 const Header = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
@@ -19,17 +19,11 @@ const Header = () => {
             <AiOutlineUser size={22} />
             <span>{name}</span>
           </div>
-          <div className={s.logoutContainer}>
-            {isAuthing && <Spinner />}
-            <button
-              disabled={isAuthing}
-              className={s.logoutButton}
-              type={'button'}
-              onClick={() => dispatch(logout())}
-            >
-              Logout
-            </button>
-          </div>
+          <IoLogOutOutline
+            size={25}
+            className={isAuthing ? s.disabled : s.logout}
+            onClick={() => dispatch(logout())}
+          />
         </div>
       )}
     </div>

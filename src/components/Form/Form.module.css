@@ -11,6 +11,13 @@
 
 .button {
   width: 50%;
+  padding: 3px 5px;
+  cursor: pointer;
+  transition: transform 250ms var(--anim-func);
+}
+
+.button:hover {
+  transform: scale3d(1.02, 1.02, 1.02);
 }
 
 .field {
