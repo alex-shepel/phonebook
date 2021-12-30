@@ -1,0 +1,8 @@
+.duplicate {
+  display: block;
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+}

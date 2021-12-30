@@ -1,5 +1,11 @@
 import * as api from 'services/contacts-api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { useSelector } from 'react-redux';
+import { getItems } from './selectors';
+
+const Error = {
+  UNKNOWN: 'Unknown backend error occurred.',
+};
 
 const fetchItems = createAsyncThunk(
   'contacts/fetchItems',
