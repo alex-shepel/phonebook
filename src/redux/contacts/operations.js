@@ -1,7 +1,5 @@
 import * as api from 'services/contacts-api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { useSelector } from 'react-redux';
-import { getItems } from './selectors';
 
 const Error = {
   UNKNOWN: 'Unknown backend error occurred.',
@@ -14,7 +12,7 @@ const fetchItems = createAsyncThunk(
       return await api.getContacts();
     } catch (error) {
       console.log('error.response ->', error.response);
-      return rejectWithValue(error);
+      return rejectWithValue(Error.UNKNOWN);
     }
   },
 );
@@ -26,7 +24,7 @@ const addItem = createAsyncThunk(
       return await api.addContact({ name, number });
     } catch (error) {
       console.log('error.response ->', error.response);
-      return rejectWithValue(error);
+      return rejectWithValue(Error.UNKNOWN);
     }
   },
 );
@@ -38,7 +36,7 @@ const deleteItem = createAsyncThunk(
       return await api.deleteContact(id);
     } catch (error) {
       console.log('error.response ->', error.response);
-      return rejectWithValue(error);
+      return rejectWithValue(Error.UNKNOWN);
     }
   },
 );
@@ -50,7 +48,7 @@ const updateItem = createAsyncThunk(
       return await api.updateContact(id, { name, number });
     } catch (error) {
       console.log('error.response ->', error.response);
-      return rejectWithValue(error);
+      return rejectWithValue(Error.UNKNOWN);
     }
   },
 );
