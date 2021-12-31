@@ -8,15 +8,17 @@ import {
 } from 'react-router-dom';
 
 import Header from 'components/Header';
-import LoginPage from 'pages/LoginPage';
-import ContactsPage from 'pages/ContactsPage';
-import RegisterPage from 'pages/RegisterPage';
+import Wrapper from 'components/Wrapper';
+import Spinner from 'components/Spinner';
 
 import * as api from 'services/contacts-api';
 import { useSelector } from 'react-redux';
 import { getIsLoggedIn, getToken } from 'redux/auth';
-import { useEffect } from 'react';
-import Wrapper from '../Wrapper';
+import { lazy, Suspense, useEffect } from 'react';
+
+const RegisterPage = lazy(() => import('pages/RegisterPage'));
+const LoginPage = lazy(() => import('pages/LoginPage'));
+const ContactsPage = lazy(() => import('pages/ContactsPage'));
 
 const App = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
@@ -43,18 +45,20 @@ const App = () => {
         <Wrapper content={<Header />} type={'transparent'} />
       </header>
       <main className={s.main}>
-        <Switch>
-          <Route exact path={'/contacts'}>
-            <ContactsPage />
-          </Route>
-          <Route exact path={'/register'}>
-            <RegisterPage />
-          </Route>
-          <Route path={'/login'}>
-            <LoginPage />
-          </Route>
-          <Redirect to={'/login'} />
-        </Switch>
+        <Suspense fallback={<Spinner size={40} />}>
+          <Switch>
+            <Route exact path={'/contacts'}>
+              <ContactsPage />
+            </Route>
+            <Route exact path={'/register'}>
+              <RegisterPage />
+            </Route>
+            <Route path={'/login'}>
+              <LoginPage />
+            </Route>
+            <Redirect to={'/login'} />
+          </Switch>
+        </Suspense>
       </main>
     </div>
   );
