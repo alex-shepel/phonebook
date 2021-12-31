@@ -12,9 +12,10 @@ import Wrapper from 'components/Wrapper';
 import Spinner from 'components/Spinner';
 
 import * as api from 'services/contacts-api';
-import { useSelector } from 'react-redux';
-import { getIsLoggedIn, getToken } from 'redux/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import { getIsLoggedIn, getToken, resetAuth } from 'redux/auth';
 import { lazy, Suspense, useEffect } from 'react';
+import { getIsTokenExpired, setIsTokenExpired } from 'redux/contacts';
 
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
@@ -22,11 +23,21 @@ const ContactsPage = lazy(() => import('pages/ContactsPage'));
 
 const App = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
+  const isTokenExpired = useSelector(getIsTokenExpired);
   const token = useSelector(getToken);
+  const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
 
   api.setToken(token);
+
+  useEffect(() => {
+    if (isTokenExpired) {
+      history.push('/login');
+      dispatch(setIsTokenExpired(false));
+      dispatch(resetAuth());
+    }
+  }, [dispatch, history, isTokenExpired]);
 
   useEffect(() => {
     if (isLoggedIn) {

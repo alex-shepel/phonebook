@@ -6,8 +6,24 @@ const initialState = {
   isLoading: false,
   isAdding: false,
   isUpdating: false,
+  isTokenExpired: false,
   deletingIds: [],
   filter: '',
+};
+
+const Error = {
+  AUTH: 'Authentication token expired.',
+  UNKNOWN: 'Unknown backend error occurred.',
+};
+
+const handleError = (state, error) => {
+  if (error.statusText === 'Unauthorized') {
+    state.isTokenExpired = true;
+    return Error.AUTH;
+  }
+
+  console.log('error ->', error);
+  return Error.UNKNOWN;
 };
 
 // We can mutate state below because of integrated IMMER lib only!
@@ -18,6 +34,9 @@ const slice = createSlice({
   reducers: {
     setFilter: (state, { payload }) => {
       state.filter = payload;
+    },
+    setIsTokenExpired: (state, { payload }) => {
+      state.isTokenExpired = payload;
     },
   },
   extraReducers: {
@@ -30,7 +49,7 @@ const slice = createSlice({
       state.isLoading = false;
     },
     [fetchItems.rejected]: (state, { payload }) => {
-      console.log(payload);
+      handleError(state, payload);
       state.isLoading = false;
     },
 
@@ -80,4 +99,4 @@ const slice = createSlice({
 });
 
 export const { reducer: contactsReducer } = slice;
-export const { setFilter } = slice.actions;
+export const { setFilter, setIsTokenExpired } = slice.actions;

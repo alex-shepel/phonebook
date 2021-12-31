@@ -1,18 +1,13 @@
 import * as api from 'services/contacts-api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const Error = {
-  UNKNOWN: 'Unknown backend error occurred.',
-};
-
 const fetchItems = createAsyncThunk(
   'contacts/fetchItems',
   async (_, { rejectWithValue }) => {
     try {
       return await api.getContacts();
     } catch (error) {
-      console.log('error.response ->', error.response);
-      return rejectWithValue(Error.UNKNOWN);
+      return rejectWithValue(error.response);
     }
   },
 );
@@ -23,8 +18,7 @@ const addItem = createAsyncThunk(
     try {
       return await api.addContact({ name, number });
     } catch (error) {
-      console.log('error.response ->', error.response);
-      return rejectWithValue(Error.UNKNOWN);
+      return rejectWithValue(error.response);
     }
   },
 );
@@ -35,8 +29,7 @@ const deleteItem = createAsyncThunk(
     try {
       return await api.deleteContact(id);
     } catch (error) {
-      console.log('error.response ->', error.response);
-      return rejectWithValue(Error.UNKNOWN);
+      return rejectWithValue(error.response);
     }
   },
 );
@@ -47,8 +40,7 @@ const updateItem = createAsyncThunk(
     try {
       return await api.updateContact(id, { name, number });
     } catch (error) {
-      console.log('error.response ->', error.response);
-      return rejectWithValue(Error.UNKNOWN);
+      return rejectWithValue(error.response);
     }
   },
 );
