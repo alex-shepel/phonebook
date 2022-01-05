@@ -13,11 +13,11 @@ import Spinner from 'components/Spinner';
 
 import * as api from 'services/contacts-api';
 import { useDispatch, useSelector } from 'react-redux';
-import { getIsLoggedIn, getToken, resetAuth } from 'redux/auth';
+import { getIsLoggedIn, getToken, resetAuthState } from 'redux/auth';
 import { lazy, Suspense, useEffect } from 'react';
 import {
   getIsTokenExpired,
-  resetState,
+  resetContactsState,
   setIsTokenExpired,
 } from 'redux/contacts';
 
@@ -39,7 +39,7 @@ const App = () => {
     if (isTokenExpired) {
       history.push('/login');
       dispatch(setIsTokenExpired(false));
-      dispatch(resetAuth());
+      dispatch(resetAuthState());
     }
   }, [dispatch, history, isTokenExpired]);
 
@@ -53,7 +53,7 @@ const App = () => {
       history.push('/login');
     }
 
-    dispatch(resetState());
+    dispatch(resetContactsState());
   }, [dispatch, history, isLoggedIn, location.pathname]);
 
   return (

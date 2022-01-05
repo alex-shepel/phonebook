@@ -11,12 +11,8 @@ const initialState = {
   registerError: null,
 };
 
-const resetAuthState = state => {
-  state.user = { name: null, email: null };
-  state.token = null;
-  state.isLoggedIn = false;
-  state.isAuthing = false;
-  state.logoutError = null;
+const resetState = state => {
+  Object.keys(initialState).forEach(key => (state[key] = initialState[key]));
 };
 
 const slice = createSlice({
@@ -26,7 +22,7 @@ const slice = createSlice({
     clearError: state => {
       state.error = null;
     },
-    resetAuth: resetAuthState,
+    resetAuthState: resetState,
   },
   extraReducers: {
     [register.pending]: state => {
@@ -67,7 +63,7 @@ const slice = createSlice({
       console.log('LOGOUT request sent');
       state.isAuthing = true;
     },
-    [logout.fulfilled]: resetAuthState,
+    [logout.fulfilled]: resetState,
     [logout.rejected]: (state, { payload }) => {
       state.isAuthing = false;
       state.logoutError = payload;
@@ -90,4 +86,4 @@ const slice = createSlice({
 });
 
 export const { reducer: authReducer } = slice;
-export const { clearError, resetAuth } = slice.actions;
+export const { clearError, resetAuthState } = slice.actions;

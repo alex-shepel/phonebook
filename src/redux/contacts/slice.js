@@ -38,7 +38,7 @@ const slice = createSlice({
     setIsTokenExpired: (state, { payload }) => {
       state.isTokenExpired = payload;
     },
-    resetState: state => {
+    resetContactsState: state => {
       Object.keys(initialState).forEach(
         key => (state[key] = initialState[key]),
       );
@@ -104,4 +104,5 @@ const slice = createSlice({
 });
 
 export const { reducer: contactsReducer } = slice;
-export const { setFilter, setIsTokenExpired, resetState } = slice.actions;
+export const { setFilter, setIsTokenExpired, resetContactsState } =
+  slice.actions;
