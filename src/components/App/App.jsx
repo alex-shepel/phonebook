@@ -15,7 +15,11 @@ import * as api from 'services/contacts-api';
 import { useDispatch, useSelector } from 'react-redux';
 import { getIsLoggedIn, getToken, resetAuth } from 'redux/auth';
 import { lazy, Suspense, useEffect } from 'react';
-import { getIsTokenExpired, setIsTokenExpired } from 'redux/contacts';
+import {
+  getIsTokenExpired,
+  resetState,
+  setIsTokenExpired,
+} from 'redux/contacts';
 
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
@@ -48,7 +52,9 @@ const App = () => {
     if (location.pathname === '/contacts') {
       history.push('/login');
     }
-  }, [history, isLoggedIn, location.pathname]);
+
+    dispatch(resetState());
+  }, [dispatch, history, isLoggedIn, location.pathname]);
 
   return (
     <div className={s.app}>

@@ -38,6 +38,11 @@ const slice = createSlice({
     setIsTokenExpired: (state, { payload }) => {
       state.isTokenExpired = payload;
     },
+    resetState: state => {
+      Object.keys(initialState).forEach(
+        key => (state[key] = initialState[key]),
+      );
+    },
   },
   extraReducers: {
     [fetchItems.pending]: state => {
@@ -99,4 +104,4 @@ const slice = createSlice({
 });
 
 export const { reducer: contactsReducer } = slice;
-export const { setFilter, setIsTokenExpired } = slice.actions;
+export const { setFilter, setIsTokenExpired, resetState } = slice.actions;
