@@ -22,7 +22,6 @@ const handleError = (state, error) => {
     return Error.AUTH;
   }
 
-  console.log('error ->', error);
   return Error.UNKNOWN;
 };
 
@@ -46,7 +45,6 @@ const slice = createSlice({
   },
   extraReducers: {
     [fetchItems.pending]: state => {
-      console.log('GET request sent');
       state.isLoading = true;
     },
     [fetchItems.fulfilled]: (state, { payload }) => {
@@ -59,7 +57,6 @@ const slice = createSlice({
     },
 
     [addItem.pending]: state => {
-      console.log('POST request sent');
       state.isAdding = true;
     },
     [addItem.fulfilled]: (state, { payload }) => {
@@ -68,12 +65,10 @@ const slice = createSlice({
       state.isAdding = false;
     },
     [addItem.rejected]: (state, { payload }) => {
-      console.log(payload);
       state.isAdding = false;
     },
 
     [deleteItem.pending]: (state, { meta }) => {
-      console.log('DELETE request sent');
       state.deletingIds.push(meta.arg);
     },
     [deleteItem.fulfilled]: (state, { meta }) => {
@@ -81,12 +76,10 @@ const slice = createSlice({
       state.deletingIds.filter(id => id !== meta.arg);
     },
     [deleteItem.rejected]: (state, { payload }) => {
-      console.log(payload);
       state.deletingIds.filter(id => id !== payload);
     },
 
     [updateItem.pending]: state => {
-      console.log('PATCH request sent');
       state.isUpdating = true;
     },
     [updateItem.fulfilled]: (state, { payload }) => {
@@ -97,7 +90,6 @@ const slice = createSlice({
       state.isUpdating = false;
     },
     [updateItem.rejected]: (state, { payload }) => {
-      console.log(payload);
       state.isUpdating = false;
     },
   },

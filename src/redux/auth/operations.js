@@ -14,11 +14,8 @@ const register = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {
     try {
-      const data = await api.signup(credentials);
-      console.log('data -->', data);
-      return data;
+      return await api.signup(credentials);
     } catch (error) {
-      console.log('error.response -->', error.response);
       const data = error.response.data;
       const errors = data.errors;
 
@@ -44,9 +41,7 @@ const login = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue }) => {
     try {
-      const data = await api.login(credentials);
-      console.log('data -->', data);
-      return data;
+      return await api.login(credentials);
     } catch (error) {
       const data = error.response.data;
 
@@ -54,7 +49,6 @@ const login = createAsyncThunk(
         return rejectWithValue(Error.AUTH_FAILED);
       }
 
-      console.log('error.response ->', error.response);
       return rejectWithValue(Error.UNKNOWN);
     }
   },
@@ -64,11 +58,8 @@ const logout = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue }) => {
     try {
-      const data = await api.logout();
-      console.log('data -->', data);
-      return data;
+      return await api.logout();
     } catch (error) {
-      console.log('error.response ->', error.response);
       return rejectWithValue(Error.UNKNOWN);
     }
   },
@@ -78,11 +69,8 @@ const fetchUser = createAsyncThunk(
   'auth/fetchUser',
   async (_, { rejectWithValue }) => {
     try {
-      const data = await api.getUser();
-      console.log('data -->', data);
-      return data;
+      return await api.getUser();
     } catch (error) {
-      console.log('error.response ->', error.response);
       return rejectWithValue(Error.UNKNOWN);
     }
   },
