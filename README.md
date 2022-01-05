@@ -1,6 +1,6 @@
 # Phonebook
 
-Stores all your contacts in one place.
+Stores all your contacts in one place. This is the pet project. The goal is to demonstrate the skill of creating react apps using redux.
 
 https://alex-shepel-phonebook.netlify.app
 
