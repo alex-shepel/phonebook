@@ -25,4 +25,6 @@ button {
 :root {
   --anim-func: cubic-bezier(0.4, 0, 0.2, 1);
   --accent: #6eb4ffff;
+  --primary: #cfe6ff;
+  --hover: #b8dbff;
 }

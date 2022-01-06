@@ -2,15 +2,16 @@
 
 .btn-primary {
   color: black;
-  background-color: #cfe6ff;
+  background-color: var(--primary);
   border-color: var(--accent);
   transition: background-color 250ms var(--anim-func);
 }
 
-.btn-primary:hover {
+.btn-primary:hover,
+.btn-primary:active {
   color: black;
   border-color: var(--accent);
-  background-color: #bfdfff;
+  background-color: var(--hover);
 }
 
 .form-control {
