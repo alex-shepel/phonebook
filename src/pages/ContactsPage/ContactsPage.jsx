@@ -2,7 +2,7 @@ import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
 import s from './ContactsPage.module.css';
 import Wrapper from 'components/Wrapper';
-import Form from 'components/Form';
+import BootstrapForm from 'components/BootstrapForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem, getIsAdding, getItems, setFilter } from 'redux/contacts';
 import { useState } from 'react';
@@ -32,46 +32,47 @@ const ContactsPage = () => {
   return (
     <>
       {duplicateError && (
-        <Wrapper
-          type={'error'}
-          content={
-            <p>
-              Contact already exists.
-              <button
-                className={s.duplicate}
-                type={'button'}
-                onClick={() => dispatch(setFilter(duplicateError.name))}
-              >
-                {duplicateError.name}
-              </button>
-            </p>
-          }
-        />
+        <Wrapper type={'error'}>
+          <p>
+            Contact already exists.
+            <button
+              className={s.duplicate}
+              type={'button'}
+              onClick={() => dispatch(setFilter(duplicateError.name))}
+            >
+              {duplicateError.name}
+            </button>
+          </p>
+        </Wrapper>
       )}
-      <Wrapper
-        content={
-          <Form
-            inputs={[
-              {
-                label: 'Name',
-                type: 'text',
-                name: 'name',
-              },
-              {
-                label: 'Number',
-                type: 'phone',
-                name: 'number',
-              },
-            ]}
-            clearInputs={['name', 'number']}
-            buttonLabel={'Add contact'}
-            onSubmit={handleSubmit}
-            isSubmitting={isAdding}
-          />
-        }
-      />
-      {items.length > 1 && <Wrapper content={<Filter />} />}
-      <Wrapper content={<ContactList />} />
+      <Wrapper>
+        <BootstrapForm
+          inputs={[
+            {
+              label: 'Name',
+              type: 'text',
+              name: 'name',
+            },
+            {
+              label: 'Number',
+              type: 'phone',
+              name: 'number',
+            },
+          ]}
+          clearInputs={['name', 'number']}
+          buttonLabel={'Add contact'}
+          onSubmit={handleSubmit}
+          isSubmitting={isAdding}
+        />
+      </Wrapper>
+      {items.length > 1 && (
+        <Wrapper>
+          <Filter />
+        </Wrapper>
+      )}
+      <Wrapper>
+        <ContactList />
+      </Wrapper>
     </>
   );
 };

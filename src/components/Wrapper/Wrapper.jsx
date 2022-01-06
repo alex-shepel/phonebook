@@ -7,7 +7,7 @@ const Type = {
   TRANSPARENT: 'transparent',
 };
 
-const Wrapper = ({ content, type = Type.NORMAL }) => {
+const Wrapper = ({ children, type = Type.NORMAL }) => {
   let backgroundColor = null;
 
   switch (type) {
@@ -27,13 +27,13 @@ const Wrapper = ({ content, type = Type.NORMAL }) => {
 
   return (
     <div style={{ backgroundColor }} className={s.wrapper}>
-      {content}
+      {children}
     </div>
   );
 };
 
 Wrapper.propTypes = {
-  content: PropTypes.object.isRequired,
+  children: PropTypes.object.isRequired,
   type: PropTypes.oneOf(Object.values(Type)),
 };
 

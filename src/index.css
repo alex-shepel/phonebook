@@ -1,3 +1,5 @@
+@import 'styles/custom-bootstrap.css';
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -7,11 +9,20 @@ body {
   font-size: 18px;
 }
 
-* {
+ul,
+ol,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+button {
   margin: 0;
   padding: 0;
 }
 
 :root {
   --anim-func: cubic-bezier(0.4, 0, 0.2, 1);
+  --accent: #6eb4ffff;
 }

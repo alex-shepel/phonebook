@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
-import s from './Form.module.css';
+import s from './BootstrapForm.module.css';
 import Spinner from 'components/Spinner';
 import useFormState from 'hooks/useFormState';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
-const Form = ({
+const BootstrapForm = ({
   inputs,
   clearInputs = [],
   buttonLabel,
@@ -25,36 +27,36 @@ const Form = ({
   };
 
   const createInput = config => (
-    <label className={s.field} key={config.name}>
-      {config.label}
-      <input
+    <Form.Group className={'mb-3'} controlId={config.name} key={config.name}>
+      <Form.Label>{config.label}</Form.Label>
+      <Form.Control
+        as={'input'}
         type={config.type}
-        name={config.name}
         value={formState[config.name]}
         onChange={e => setFormState(config.name, e.target.value)}
         required
       />
-    </label>
+    </Form.Group>
   );
 
   const createButton = () => (
     <div className={s.buttonContainer}>
-      <button disabled={isSubmitting} type="submit" className={s.button}>
+      <Button disabled={isSubmitting} type="submit" variant={'primary'}>
         {buttonLabel}
-      </button>
+      </Button>
       {isSubmitting && <Spinner />}
     </div>
   );
 
   return (
-    <form onSubmit={handleSubmit} className={s.form}>
+    <Form onSubmit={handleSubmit}>
       {inputs.map(createInput)}
       {createButton()}
-    </form>
+    </Form>
   );
 };
 
-Form.propTypes = {
+BootstrapForm.propTypes = {
   inputs: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
@@ -68,4 +70,4 @@ Form.propTypes = {
   isSubmitting: PropTypes.bool.isRequired,
 };
 
-export default Form;
+export default BootstrapForm;

@@ -2,6 +2,7 @@ import s from './Filter.module.css';
 import { GoSearch } from 'react-icons/go';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilter, setFilter } from 'redux/contacts';
+import Form from 'react-bootstrap/Form';
 
 const Filter = () => {
   const filter = useSelector(getFilter);
@@ -12,12 +13,12 @@ const Filter = () => {
       <span className={s.icon}>
         <GoSearch />
       </span>
-      <input
-        className={s.input}
-        type="text"
-        name="filter"
-        onChange={e => dispatch(setFilter(e.target.value))}
+      <Form.Control
+        as={'input'}
+        type={'text'}
         value={filter}
+        onChange={e => dispatch(setFilter(e.target.value))}
+        required
       />
     </div>
   );

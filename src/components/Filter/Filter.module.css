@@ -1,16 +1,11 @@
 .filter {
   display: flex;
   justify-content: space-between;
-  background-color: #fff;
-  border-radius: 10px;
+  gap: 5px;
 }
 
 .icon {
   display: flex;
   align-items: center;
   width: 10%;
-}
-
-.input {
-  width: 90%;
 }

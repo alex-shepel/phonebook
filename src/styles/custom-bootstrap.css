@@ -1,0 +1,18 @@
+@import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+.btn-primary {
+  color: black;
+  background-color: #cfe6ff;
+  border-color: var(--accent);
+  transition: background-color 250ms var(--anim-func);
+}
+
+.btn-primary:hover {
+  color: black;
+  border-color: var(--accent);
+  background-color: #bfdfff;
+}
+
+.form-control {
+  border-color: var(--accent);
+}

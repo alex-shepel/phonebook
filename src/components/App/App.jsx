@@ -21,7 +21,7 @@ import {
   setIsTokenExpired,
 } from 'redux/contacts';
 
-const RegisterPage = lazy(() => import('pages/RegisterPage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const ContactsPage = lazy(() => import('pages/ContactsPage'));
 
@@ -59,7 +59,9 @@ const App = () => {
   return (
     <div className={s.app}>
       <header className={s.header}>
-        <Wrapper content={<Header />} type={'transparent'} />
+        <Wrapper type={'transparent'}>
+          <Header />
+        </Wrapper>
       </header>
       <main className={s.main}>
         <Suspense fallback={<Spinner size={40} />}>
