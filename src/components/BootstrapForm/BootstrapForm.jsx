@@ -4,6 +4,7 @@ import Spinner from 'components/Spinner';
 import useFormState from 'hooks/useFormState';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 const BootstrapForm = ({
   inputs,
@@ -27,16 +28,21 @@ const BootstrapForm = ({
   };
 
   const createInput = config => (
-    <Form.Group className={'mb-3'} controlId={config.name} key={config.name}>
-      <Form.Label>{config.label}</Form.Label>
+    <FloatingLabel
+      className={'mb-3'}
+      label={config.label}
+      controlId={config.name}
+      key={config.name}
+    >
       <Form.Control
         as={'input'}
         type={config.type}
         value={formState[config.name]}
         onChange={e => setFormState(config.name, e.target.value)}
+        placeholder={config.label}
         required
       />
-    </Form.Group>
+    </FloatingLabel>
   );
 
   const createButton = () => (
