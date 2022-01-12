@@ -33,7 +33,7 @@ const Wrapper = ({ children, type = Type.NORMAL }) => {
 };
 
 Wrapper.propTypes = {
-  children: PropTypes.object.isRequired,
+  children: PropTypes.node.isRequired,
   type: PropTypes.oneOf(Object.values(Type)),
 };
 
